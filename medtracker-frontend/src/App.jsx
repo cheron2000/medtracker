@@ -19,8 +19,7 @@ import {
 } from "recharts";
 
 // ─── API client ───────────────────────────────────────────────────────────────
-const BASE_URL = (typeof process !== "undefined" && process.env?.REACT_APP_API_URL)
-  || "http://localhost:3001";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 function getToken()   { try { return localStorage.getItem("mt_token"); } catch { return null; } }
 function saveToken(t) { try { localStorage.setItem("mt_token", t);    } catch {} }
