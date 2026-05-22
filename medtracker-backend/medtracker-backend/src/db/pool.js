@@ -3,11 +3,13 @@
 require("dotenv").config();
 const { Pool } = require("pg");
 
+const isRender = (process.env.DATABASE_URL || "").includes("render.com");
+
 const pool = new Pool(
   process.env.DATABASE_URL
     ? {
         connectionString: process.env.DATABASE_URL,
-        ssl: process.env.NODE_ENV === "production"
+        ssl: (process.env.NODE_ENV === "production" || isRender)
           ? { rejectUnauthorized: false }
           : false,
       }
